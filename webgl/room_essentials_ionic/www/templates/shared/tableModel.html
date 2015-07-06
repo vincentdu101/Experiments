@@ -1,0 +1,21 @@
+<script id="vertShader" type="shader">
+  varying vec2 vUv;
+  void main() {
+      vUv = uv;
+      gl_Position = projectionMatrix *
+                    modelViewMatrix * vec4(position, 1.0 );
+  }
+</script>
+<script id="fragShader" type="shader">
+  precision highp float;
+  varying vec2 vUv;
+  uniform float color;
+  // Name it whatever it was named in the uniforms object
+  uniform sampler2D material;      
+  void main(void) {
+      gl_FragColor = texture2D(material, vUv);
+  }
+</script>  
+    
+<div id="webgl-container">
+</div>
