@@ -75,6 +75,16 @@ app.run(function($ionicPlatform) {
         controller: 'ShowcaseCtrl'
       }
     }
+  })
+
+  .state('app.udacity', {
+    url: "/udacity",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/udacity.html",
+        controller: 'UdacityCtrl'
+      }
+    }
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/showcase');

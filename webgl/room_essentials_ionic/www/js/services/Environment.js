@@ -24,7 +24,8 @@ app.service('Environment', function() {
       height = window.innerHeight - 100,
       renderer = new THREE.WebGLRenderer(),
       controls,
-      update;
+      update,
+      clock = new THREE.Clock();
 
   function initRenderer() {
     renderer.setSize(width, height);
@@ -42,7 +43,7 @@ app.service('Environment', function() {
   }
 
   function initControls() {
-    controls = new THREE.TrackballControls( camera );
+    controls = new THREE.TrackballControls( camera, renderer.domElement );
 
     controls.rotateSpeed = 1.0;
     controls.zoomSpeed = 1.2;
@@ -55,11 +56,8 @@ app.service('Environment', function() {
     controls.dynamicDampingFactor = 0.3;
 
     controls.keys = [ 65, 83, 68 ];
-
-    controls.addEventListener('change', function(event) {
-      // debugger;
-      console.log('change in controls occurred');
-    });
+    controls.target.set(0, 0, 0);
+    controls.addEventListener('change', render);
 
     // controls = new THREE.OrbitControls( camera );
     // controls.maxPolarAngle = Math.PI / 2;
@@ -156,10 +154,11 @@ app.service('Environment', function() {
   }
 
   function render() {
+    var delta = clock.getDelta();
     requestAnimationFrame(render);
     renderer.render(scene, camera);
     update(direction);
-    controls.update();
+    controls.update(delta);
   }
 
   return {
