@@ -1,6 +1,0 @@
-app.service('BasicEnvironment' function(){
-
-
-  
-
-});

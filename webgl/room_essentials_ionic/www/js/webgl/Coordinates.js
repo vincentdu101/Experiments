@@ -22,7 +22,7 @@ var Coordinates = {
 		} else if (orientation === "z") {
 			grid.rotation.z = - Math.PI / 2;
 		}
-
+		
 		scene.add(grid);
 	},
 	drawGround:function(params) {
