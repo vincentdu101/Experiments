@@ -44,15 +44,15 @@ app.directive('stairway', [
           var stepHorizontal = new THREE.BoxGeometry(stepWidth, stepThickness, horizontalStepDepth);
           var stepMesh;
 
-          for (var i = 0; i < 5; i++) {
+          for (var i = 0; i < 8; i++) {
               // Make and position the vertical part of the step
               stepMesh = new THREE.Mesh( stepVertical, stepMaterialVertical );        
               
               // The position is where the center of the block will be put.
               // You can define position as THREE.Vector3(x, y, z) or in the following way:
               stepMesh.position.x = 0;      // centered at origin
-              stepMesh.position.y = ((verticalStepHeight * (i + 1)/2)); // half of height: put it above ground plane
-              stepMesh.position.z = 0 + (100 * i);      // centered at origin
+              stepMesh.position.y = ((verticalStepHeight)/ 2) + (verticalStepHeight * i); // half of height: put it above ground plane
+              stepMesh.position.z = ((horizontalStepDepth * i))/2;      // centered at origin
               scene.add( stepMesh );
 
               // Make and position the horizontal part
@@ -61,7 +61,7 @@ app.directive('stairway', [
               // Push up by half of horizontal step's height, plus vertical step's height
               stepMesh.position.y = (stepThickness/2) + (verticalStepHeight * (i+1));
               // Push step forward by half the depth, minus half the vertical step's thickness
-              stepMesh.position.z = (horizontalStepDepth/2);
+              stepMesh.position.z = ((horizontalStepDepth * (i + 1))/2);
               scene.add( stepMesh );
           }
         }
