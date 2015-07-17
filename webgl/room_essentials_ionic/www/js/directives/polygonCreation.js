@@ -11,7 +11,7 @@ app.directive('polygonCreation', [
       controller: function($scope) {
         var windowScale;
 
-        function PolygonGeometry(sides, location) {
+        function PolygonGeometry(sides, location, radius) {
           var geo = new THREE.Geometry();
 
           // generate vertices
@@ -20,8 +20,8 @@ app.directive('polygonCreation', [
             // clockwise around 
             var angle = (Math.PI / 2) + (pt / sides) * 2 * Math.PI;
 
-            var x = Math.cos(angle) + location.x;
-            var y = Math.sin(angle) + location.y;
+            var x = (radius * Math.cos(angle)) + location.x;
+            var y = (radius * Math.sin(angle)) + location.y;
 
             // save the vertex location 
             geo.vertices.push( new THREE.Vector3(x, y, 0) );
