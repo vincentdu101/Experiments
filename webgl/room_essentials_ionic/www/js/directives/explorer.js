@@ -5,7 +5,8 @@ app.directive('explorer', [
   'World',
   'Player',
   'GameControls',
-  function(PointerLock, World, Player, GameControls){
+  'Soldier',
+  function(PointerLock, World, Player, GameControls, Soldier){
 
     return {
       restrict: "A",
@@ -50,9 +51,10 @@ app.directive('explorer', [
           resetScene();
           PointerLock.init(camera, scene);
           world = new World(scene);
-          player = new Player(scene, camera);
+          // player = new Player(scene, camera);
+          player = new Soldier(scene, camera, render);
           controls = new GameControls(player);
-          render();
+          // render();
         }
 
         function resetScene() {
