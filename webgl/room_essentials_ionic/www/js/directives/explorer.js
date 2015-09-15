@@ -51,10 +51,10 @@ app.directive('explorer', [
           resetScene();
           PointerLock.init(camera, scene);
           world = new World(scene);
-          // player = new Player(scene, camera);
-          player = new Soldier(scene, camera, render);
+          player = new Player(scene, camera);
+          // player = new Soldier(scene, camera, render);
           controls = new GameControls(player);
-          // render();
+          render();
         }
 
         function resetScene() {
